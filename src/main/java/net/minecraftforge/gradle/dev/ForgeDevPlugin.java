@@ -90,7 +90,7 @@ public class ForgeDevPlugin extends DevBasePlugin
 
         // the master task.
         task = makeTask("buildPackages");
-        task.dependsOn("launch4j", "createChangelog", "packageUniversal", "packageInstaller", "packageUserDev", "packageSrc");
+        task.dependsOn("launch4j", "packageUniversal", "packageInstaller", "packageUserDev", "packageSrc");
         task.setGroup("Forge");
     }
 
@@ -439,17 +439,6 @@ public class ForgeDevPlugin extends DevBasePlugin
             crowdin.setOutput(delayedFile(CROWDIN_ZIP));
             crowdin.setProjectId(CROWDIN_FORGEID);
             crowdin.setExtract(false);
-        }
-
-        ChangelogTask makeChangelog = makeTask("createChangelog", ChangelogTask.class);
-        {
-            makeChangelog.getOutputs().upToDateWhen(Constants.CALL_FALSE);
-            makeChangelog.setServerRoot(delayedString("{JENKINS_SERVER}"));
-            makeChangelog.setJobName(delayedString("{JENKINS_JOB}"));
-            makeChangelog.setAuthName(delayedString("{JENKINS_AUTH_NAME}"));
-            makeChangelog.setAuthPassword(delayedString("{JENKINS_AUTH_PASSWORD}"));
-            makeChangelog.setTargetBuild(delayedString("{BUILD_NUM}"));
-            makeChangelog.setOutput(delayedFile(CHANGELOG));
         }
 
         VersionJsonTask vjson = makeTask("generateVersionJson", VersionJsonTask.class);
