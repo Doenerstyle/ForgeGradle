@@ -497,7 +497,7 @@ public class ForgeDevPlugin extends DevBasePlugin
                 }
             });
             uni.setDestinationDir(delayedFile("{BUILD_DIR}/distributions").call());
-            uni.dependsOn("genBinPatches", crowdin, makeChangelog, "createVersionPropertiesFML", vjson);
+            uni.dependsOn("genBinPatches", crowdin, "createVersionPropertiesFML", vjson);
         }
         project.getArtifacts().add("archives", uni);
 
