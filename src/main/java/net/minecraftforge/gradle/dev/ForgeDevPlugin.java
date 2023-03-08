@@ -667,7 +667,6 @@ public class ForgeDevPlugin extends DevBasePlugin
             src.from(delayedFile("{FML_DIR}/gradlew.bat"));
             src.from(delayedFile("{FML_DIR}/gradle/wrapper"), new CopyInto("gradle/wrapper"));
             src.rename(".+?\\.gradle", "build.gradle");
-            src.dependsOn(makeChangelog);
             src.setExtension("zip");
         }
         project.getArtifacts().add("archives", src);
